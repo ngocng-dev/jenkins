@@ -64,6 +64,8 @@ for(i = 0; i < buildTypes.size(); i++) {
                 }
 
                 // Once we've built, archive the artifacts and the test results.
+                // findFiles by: pipeline-utility-steps 
+                // https://jenkins.io/doc/pipeline/steps/pipeline-utility-steps/
                 stage("${buildType} Publishing") {
                     def files = findFiles(glob: '**/target/*.jar, **/target/*.war, **/target/*.hpi')
                     renameFiles(files, buildType.toLowerCase())
