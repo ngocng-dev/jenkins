@@ -60,7 +60,7 @@ for(i = 0; i < buildTypes.size(); i++) {
                             def mvnCmd = "mvn -Pdebug -U javadoc:javadoc clean install \
                                 ${runTests ? '-Dmaven.test.failure.ignore' : '-DskipTests'} \
                                 ${runFindBugs ? '-Dfindbugs.failOnError=false'  : '-DskipTests'} \
-                                ${runCheckStyle ? '-Dcheckstyle.failOnViolation=false' '-Dcheckstyle.failsOnError=false'  : '-DskipTests'} \
+                                ${runCheckStyle ? '-Dcheckstyle.failOnViolation=false -Dcheckstyle.failsOnError=false'  : '-DskipTests'} \
                                 -V -B -Dmaven.repo.local=${pwd tmp: true}/m2repo -s settings-azure.xml -e"
 
                             if(isUnix()) {
