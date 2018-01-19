@@ -57,7 +57,7 @@ for(i = 0; i < buildTypes.size(); i++) {
                             // -Dmaven.repo.local=… tells Maven to create a subdir in the temporary directory for the local Maven repository
                             // def mvnCmd = "mvn -Pdebug -U javadoc:javadoc clean install ${runTests ? '-Dmaven.test.failure.ignore' : '-DskipTests'} -V -B -Dmaven.repo.local=${pwd tmp: true}/m2repo -s settings-azure.xml -e"
                             
-                            def mvnCmd = "mvn -Pdebug -U javadoc:javadoc clean install \
+                            def mvnCmd = "mvn -Pdebug -U javadoc:javadoc findbugs:findbugs checkstyle:checkstyle clean install \
                                 ${runTests ? '-Dmaven.test.failure.ignore' : '-DskipTests'} \
                                 ${runFindBugs ? '-Dfindbugs.failOnError=false'  : '-DskipTests'} \
                                 ${runCheckStyle ? '-Dcheckstyle.failOnViolation=false -Dcheckstyle.failsOnError=false'  : '-DskipTests'} \
