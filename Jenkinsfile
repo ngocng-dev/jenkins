@@ -1,6 +1,11 @@
 #!/usr/bin/env groovy
 
-/*
+/**
+ * pipeline wrapper step for building a plugin
+ * standardBuild step provided by: https://github.com/jenkinsci/jenkins/blob/master/Jenkinsfile
+ */
+
+/**
  * This Jenkinsfile is intended to run on https://ci.jenkins.io and may fail anywhere else.
  * It makes assumptions about plugins being installed, labels mapping to nodes that can build what is needed, etc.
  *
@@ -27,7 +32,15 @@ for(i = 0; i < buildTypes.size(); i++) {
                 // First stage is actually checking out the source. Since we're using Multibranch
                 // currently, we can use "checkout scm".
                 stage('Checkout') {
-                    checkout scm
+                    if (env.BRANCH_NAME) {
+                        checkout scm
+                    }
+                    else if ((env.BRANCH_NAME == null) && (repo)) {
+                        git repo
+                    }
+                    else {
+                        error 'standardBuild must be used as part of a Multibranch Pipeline *or* a `repo` argument must be provided'
+                    }
                 }
 
                 // Now run the actual build.
