@@ -16,9 +16,9 @@
 
 // TEST FLAG - to make it easier to turn on/off unit tests for speeding up access to later stuff.
 def runTests = true
-def runFindBugs = false
-def runCheckStyle = false
-def runCobertura = false
+def runFindBugs = true
+def runCheckStyle = true
+def runCobertura = true
 
 def failFast = false
 
